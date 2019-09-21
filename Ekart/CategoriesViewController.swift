@@ -39,7 +39,7 @@ final class CategoriesViewController: UIViewController {
     //MARK: - Draw UI
     private func drawUI() {
         navigationItem.title = "Categories"
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.prefersLargeTitles = true
         
         view.backgroundColor = .headyWhite
         view.addSubview(tableView)
@@ -52,37 +52,43 @@ final class CategoriesViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     @objc private func pullToRefresh() {
         MasterDataManager.instance.fetch()
     }
     
-    @objc func expandCollaps(btn: UIButton) {
-        btn.backgroundColor = .red
-        let chiledCount = MasterDataManager.instance.categoriesData[btn.tag].childCategories.count
+    /// Show/hide child categories
+    private func expandCollaps(_ section: Int) -> Bool {
+        let childCount = MasterDataManager.instance.categoriesData[section].childCategories.count
         
-        if chiledCount <= 0 {
-            return
+        if childCount <= 0 {
+            return false
         }
         
         var isOpen = false
-        if let unWrappedValue = MasterDataManager.instance.categoriesData[btn.tag].isOpen {
+        if let unWrappedValue = MasterDataManager.instance.categoriesData[section].isOpen {
             isOpen = unWrappedValue
         }
         
         var indexPaths = [IndexPath]()
-        for i in 0...chiledCount - 1 {
-            indexPaths.append(IndexPath(row: i, section: btn.tag))
+        for i in 1...childCount {
+            indexPaths.append(IndexPath(row: i, section: section))
         }
         
-        MasterDataManager.instance.categoriesData[btn.tag].isOpen = !isOpen
+        MasterDataManager.instance.categoriesData[section].isOpen = !isOpen
         
         if !isOpen {
             tableView.insertRows(at: indexPaths, with: .fade)
         } else {
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: section)) as? CategoryCell {
+            cell.updateIconState(!isOpen)
+        }
+        return true
     }
 }
 
@@ -94,34 +100,34 @@ extension CategoriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let category = MasterDataManager.instance.categoriesData[section]
-        return (category.isOpen ?? false) ? category.childCategories.count : 0
+        return (category.isOpen ?? false) ? category.childCategories.count + 1 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = UITableViewCell(style: .default, reuseIdentifier: "Test")
-        cell.textLabel?.text = "Row \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
+        let mainCategory = MasterDataManager.instance.categoriesData[indexPath.section]
+        if indexPath.row == 0 {
+            cell.setupCell(name: mainCategory.name, isOpen: mainCategory.isOpen, hasChild: mainCategory.childCategories.count > 0)
+            return cell
+        }
+        if let childCategories = mainCategory.childCategoriesDetail {
+            cell.setupCell(true, name: childCategories[indexPath.row - 1].name, isOpen: false)
+            return cell
+        }
+        cell.setupCell(name: "") // For safe, should never fall here
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let mainBtn = UIButton(type: .custom)
-        mainBtn.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-        mainBtn.setTitle("Section \(section)", for: .normal)
-        mainBtn.contentHorizontalAlignment = .left
-        mainBtn.setTitleColor(.black, for: .normal)
-        mainBtn.backgroundColor = .white
-        mainBtn.addTarget(self, action: #selector(expandCollaps), for: .touchUpInside)
-        mainBtn.tag = section
-        return mainBtn
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
     }
 }
 
 extension CategoriesViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            return
+        }
+        if !expandCollaps(indexPath.section) {
+            
+        }
+    }
 }
 
 //MARK: -  Make View Components
@@ -133,7 +139,7 @@ extension CategoriesViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "CurrencyCell", bundle: nil), forCellReuseIdentifier: "CurrencyCell")
+        tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         return tableView
     }
 }

@@ -20,6 +20,8 @@
 		E2661442233611E300796A47 /* MasterDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2661441233611E300796A47 /* MasterDataManager.swift */; };
 		E26614442336148300796A47 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614432336148300796A47 /* EmptyView.swift */; };
 		E2661446233614BF00796A47 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2661445233614BF00796A47 /* UIExtension.swift */; };
+		E266144923369D1B00796A47 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266144723369D1B00796A47 /* CategoryCell.swift */; };
+		E266144A23369D1B00796A47 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E266144823369D1B00796A47 /* CategoryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		E2661441233611E300796A47 /* MasterDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDataManager.swift; sourceTree = "<group>"; };
 		E26614432336148300796A47 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		E2661445233614BF00796A47 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		E266144723369D1B00796A47 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		E266144823369D1B00796A47 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		E965ADDA152507BAEED49223 /* Pods_Ekart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ekart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,6 +118,8 @@
 				E26614342335FDD900796A47 /* Resources */,
 				E26614392336007600796A47 /* CategoriesViewController.swift */,
 				E2661441233611E300796A47 /* MasterDataManager.swift */,
+				E266144723369D1B00796A47 /* CategoryCell.swift */,
+				E266144823369D1B00796A47 /* CategoryCell.xib */,
 				E266143D23360A3400796A47 /* Service.swift */,
 				E266143F23360DCC00796A47 /* HeadyModel.swift */,
 				E26614432336148300796A47 /* EmptyView.swift */,
@@ -244,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */,
+				E266144A23369D1B00796A47 /* CategoryCell.xib in Resources */,
 				E266141B2335FA9500796A47 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +338,7 @@
 				E266143E23360A3400796A47 /* Service.swift in Sources */,
 				E26614362335FE2200796A47 /* Global.swift in Sources */,
 				E26614142335FA9200796A47 /* AppDelegate.swift in Sources */,
+				E266144923369D1B00796A47 /* CategoryCell.swift in Sources */,
 				E26614442336148300796A47 /* EmptyView.swift in Sources */,
 				E2661442233611E300796A47 /* MasterDataManager.swift in Sources */,
 				E2661446233614BF00796A47 /* UIExtension.swift in Sources */,

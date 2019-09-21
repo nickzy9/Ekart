@@ -38,10 +38,9 @@ struct Global {
     
     /// Font size
     struct fontSize {
-        static let bigTitle = 18.0
-        static let title = 16.0
-        static let subTitle = 15.0
-        static let description = 14.0
+        static let big = 17.0
+        static let medium = 15.0
+        static let small = 13.0
     }
 }
 

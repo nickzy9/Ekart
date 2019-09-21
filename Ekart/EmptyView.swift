@@ -73,7 +73,7 @@ class EmptyView: UIView {
     
     /// Message description label
     private lazy var descriptionLabel: UILabel = {
-        let label = UILabel(font: .systemFont(ofSize:  CGFloat(Global.fontSize.bigTitle)), textColor: .headyText)
+        let label = UILabel(font: .systemFont(ofSize:  CGFloat(Global.fontSize.big)), textColor: .headyText)
         label.textAlignment = .center
         return label
     }()
@@ -124,7 +124,7 @@ class EmptyView: UIView {
     }
     
     private func showLoadingView() {
-        let label = UILabel(font: .systemFont(ofSize: CGFloat(Global.fontSize.subTitle)), textColor: .headyGray)
+        let label = UILabel(font: .systemFont(ofSize: CGFloat(Global.fontSize.medium)), textColor: .headyGray)
         label.text = "Loading..."
         
         let activityIndicator = UIActivityIndicatorView(style: .gray)

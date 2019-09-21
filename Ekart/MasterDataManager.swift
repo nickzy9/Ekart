@@ -11,9 +11,21 @@ import Foundation
 final class MasterDataManager {
     
     static let instance = MasterDataManager()
+    private var isFetching = false
+    
+    private var headyModel: HeadyModel! {
+        didSet {
+            if let unwrappedModel = headyModel {
+                categoriesData = getCategoriesWithChildDetails()
+                rankingData = unwrappedModel.rankings
+            } else {
+                categoriesData = []
+                rankingData = []
+            }
+        }
+    }
     var categoriesData = [Category]()
     var rankingData = [Ranking]()
-    var isFetching = false
     
     func fetch() {
         if isFetching { return }
@@ -28,18 +40,31 @@ final class MasterDataManager {
                 return
             }
             
+            self.headyModel = data
+            
             switch resMsg {
             case .success:
-                self.categoriesData = data.categories
-                self.rankingData = data.rankings
                 NotificationCenter.default.post(name: .categoriesDidUpdate, object: nil)
             default:
-                self.categoriesData = data.categories
-                self.rankingData = data.rankings
                 NotificationCenter.default.post(name: .categoriesDidFailToRefresh, object: resMsg)
             }
             
             self.isFetching = false
         }
+    }
+    
+    private func getCategoriesWithChildDetails()-> [Category] {
+        let updatedCategories = headyModel.categories.map { cp -> Category in
+            var tempChildCategories = [ChildCategoriesDetail]()
+            for id in cp.childCategories {
+                let category = headyModel.categories.first(where: {$0.id == id})
+                let tempChildCategory = ChildCategoriesDetail(id: id, name: category?.name ?? "")
+                tempChildCategories.append(tempChildCategory)
+            }
+            cp.childCategoriesDetail = tempChildCategories
+            return cp
+        }
+        
+        return updatedCategories
     }
 }

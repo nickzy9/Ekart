@@ -21,6 +21,7 @@ class Category: Codable {
     let products: [CategoryProduct]
     let childCategories: [Int]
     var isOpen: Bool?
+    var childCategoriesDetail: [ChildCategoriesDetail]?
     
     enum CodingKeys: String, CodingKey {
         case id, name, products
@@ -41,6 +42,12 @@ class CategoryProduct: Codable {
         case dateAdded = "date_added"
         case variants, tax
     }
+}
+
+// MARK: - ChildCategoriesDetail
+struct ChildCategoriesDetail: Codable {
+    let id: Int
+    let name: String
 }
 
 // MARK: - Tax
