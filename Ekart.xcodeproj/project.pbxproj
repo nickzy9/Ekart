@@ -22,6 +22,10 @@
 		E2661446233614BF00796A47 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2661445233614BF00796A47 /* UIExtension.swift */; };
 		E266144923369D1B00796A47 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266144723369D1B00796A47 /* CategoryCell.swift */; };
 		E266144A23369D1B00796A47 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E266144823369D1B00796A47 /* CategoryCell.xib */; };
+		E266144D2336B28800796A47 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266144B2336B28800796A47 /* ProductListViewController.swift */; };
+		E266144E2336B28800796A47 /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E266144C2336B28800796A47 /* ProductListViewController.xib */; };
+		E26614512336B4BC00796A47 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266144F2336B4BC00796A47 /* ProductCell.swift */; };
+		E26614522336B4BC00796A47 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E26614502336B4BC00796A47 /* ProductCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		E2661445233614BF00796A47 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		E266144723369D1B00796A47 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		E266144823369D1B00796A47 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		E266144B2336B28800796A47 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
+		E266144C2336B28800796A47 /* ProductListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
+		E266144F2336B4BC00796A47 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		E26614502336B4BC00796A47 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		E965ADDA152507BAEED49223 /* Pods_Ekart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ekart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +127,10 @@
 				E26614392336007600796A47 /* CategoriesViewController.swift */,
 				E2661441233611E300796A47 /* MasterDataManager.swift */,
 				E266144723369D1B00796A47 /* CategoryCell.swift */,
+				E266144B2336B28800796A47 /* ProductListViewController.swift */,
+				E266144C2336B28800796A47 /* ProductListViewController.xib */,
+				E266144F2336B4BC00796A47 /* ProductCell.swift */,
+				E26614502336B4BC00796A47 /* ProductCell.xib */,
 				E266144823369D1B00796A47 /* CategoryCell.xib */,
 				E266143D23360A3400796A47 /* Service.swift */,
 				E266143F23360DCC00796A47 /* HeadyModel.swift */,
@@ -251,6 +263,8 @@
 			files = (
 				E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */,
 				E266144A23369D1B00796A47 /* CategoryCell.xib in Resources */,
+				E26614522336B4BC00796A47 /* ProductCell.xib in Resources */,
+				E266144E2336B28800796A47 /* ProductListViewController.xib in Resources */,
 				E266141B2335FA9500796A47 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +348,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E266144023360DCC00796A47 /* HeadyModel.swift in Sources */,
+				E26614512336B4BC00796A47 /* ProductCell.swift in Sources */,
 				E266143A2336007600796A47 /* CategoriesViewController.swift in Sources */,
+				E266144D2336B28800796A47 /* ProductListViewController.swift in Sources */,
 				E266143E23360A3400796A47 /* Service.swift in Sources */,
 				E26614362335FE2200796A47 /* Global.swift in Sources */,
 				E26614142335FA9200796A47 /* AppDelegate.swift in Sources */,
