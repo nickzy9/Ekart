@@ -1,0 +1,6 @@
+framework module Pods_EkartTests {
+  umbrella header "Pods-EkartTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -3,16 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86EF4B72023FE11B91941394 /* Pods_EkartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AE0B2E5E0FCA437E3144C /* Pods_EkartTests.framework */; };
+		CD239452553CB66EB4D29784 /* Pods_Ekart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E965ADDA152507BAEED49223 /* Pods_Ekart.framework */; };
 		E26614142335FA9200796A47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614132335FA9200796A47 /* AppDelegate.swift */; };
-		E26614162335FA9200796A47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614152335FA9200796A47 /* ViewController.swift */; };
-		E26614192335FA9200796A47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26614172335FA9200796A47 /* Main.storyboard */; };
 		E266141B2335FA9500796A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E266141A2335FA9500796A47 /* Assets.xcassets */; };
 		E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E266141C2335FA9600796A47 /* LaunchScreen.storyboard */; };
 		E26614292335FA9600796A47 /* EkartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614282335FA9600796A47 /* EkartTests.swift */; };
+		E26614362335FE2200796A47 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614352335FE2200796A47 /* Global.swift */; };
+		E266143A2336007600796A47 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614392336007600796A47 /* CategoriesViewController.swift */; };
+		E266143E23360A3400796A47 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266143D23360A3400796A47 /* Service.swift */; };
+		E266144023360DCC00796A47 /* HeadyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266143F23360DCC00796A47 /* HeadyModel.swift */; };
+		E2661442233611E300796A47 /* MasterDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2661441233611E300796A47 /* MasterDataManager.swift */; };
+		E26614442336148300796A47 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614432336148300796A47 /* EmptyView.swift */; };
+		E2661446233614BF00796A47 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2661445233614BF00796A47 /* UIExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +33,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		079EEC9405116A661FDF2F03 /* Pods-EkartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkartTests.release.xcconfig"; path = "Target Support Files/Pods-EkartTests/Pods-EkartTests.release.xcconfig"; sourceTree = "<group>"; };
+		19F446798880F4DA9B9C41F3 /* Pods-EkartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkartTests.debug.xcconfig"; path = "Target Support Files/Pods-EkartTests/Pods-EkartTests.debug.xcconfig"; sourceTree = "<group>"; };
+		495AE0B2E5E0FCA437E3144C /* Pods_EkartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EkartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C533655495FC83C776921EBC /* Pods-Ekart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ekart.release.xcconfig"; path = "Target Support Files/Pods-Ekart/Pods-Ekart.release.xcconfig"; sourceTree = "<group>"; };
+		E02709A6038729CEA6980956 /* Pods-Ekart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ekart.debug.xcconfig"; path = "Target Support Files/Pods-Ekart/Pods-Ekart.debug.xcconfig"; sourceTree = "<group>"; };
 		E26614102335FA9200796A47 /* Ekart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ekart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26614132335FA9200796A47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E26614152335FA9200796A47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E26614182335FA9200796A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E266141A2335FA9500796A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E266141D2335FA9600796A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E266141F2335FA9600796A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E26614242335FA9600796A47 /* EkartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EkartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26614282335FA9600796A47 /* EkartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EkartTests.swift; sourceTree = "<group>"; };
 		E266142A2335FA9600796A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E26614352335FE2200796A47 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		E26614392336007600796A47 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		E266143D23360A3400796A47 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E266143F23360DCC00796A47 /* HeadyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadyModel.swift; sourceTree = "<group>"; };
+		E2661441233611E300796A47 /* MasterDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDataManager.swift; sourceTree = "<group>"; };
+		E26614432336148300796A47 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		E2661445233614BF00796A47 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		E965ADDA152507BAEED49223 /* Pods_Ekart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ekart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD239452553CB66EB4D29784 /* Pods_Ekart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +69,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86EF4B72023FE11B91941394 /* Pods_EkartTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A53142CB23F657702E23413 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E02709A6038729CEA6980956 /* Pods-Ekart.debug.xcconfig */,
+				C533655495FC83C776921EBC /* Pods-Ekart.release.xcconfig */,
+				19F446798880F4DA9B9C41F3 /* Pods-EkartTests.debug.xcconfig */,
+				079EEC9405116A661FDF2F03 /* Pods-EkartTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E26614072335FA9100796A47 = {
 			isa = PBXGroup;
 			children = (
 				E26614122335FA9200796A47 /* Ekart */,
 				E26614272335FA9600796A47 /* EkartTests */,
 				E26614112335FA9200796A47 /* Products */,
+				4A53142CB23F657702E23413 /* Pods */,
+				EF22FD6D39A21BBBABCB889E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,12 +110,14 @@
 		E26614122335FA9200796A47 /* Ekart */ = {
 			isa = PBXGroup;
 			children = (
-				E26614132335FA9200796A47 /* AppDelegate.swift */,
-				E26614152335FA9200796A47 /* ViewController.swift */,
-				E26614172335FA9200796A47 /* Main.storyboard */,
-				E266141A2335FA9500796A47 /* Assets.xcassets */,
-				E266141C2335FA9600796A47 /* LaunchScreen.storyboard */,
-				E266141F2335FA9600796A47 /* Info.plist */,
+				E26614332335FDBB00796A47 /* Common */,
+				E26614342335FDD900796A47 /* Resources */,
+				E26614392336007600796A47 /* CategoriesViewController.swift */,
+				E2661441233611E300796A47 /* MasterDataManager.swift */,
+				E266143D23360A3400796A47 /* Service.swift */,
+				E266143F23360DCC00796A47 /* HeadyModel.swift */,
+				E26614432336148300796A47 /* EmptyView.swift */,
+				E2661445233614BF00796A47 /* UIExtension.swift */,
 			);
 			path = Ekart;
 			sourceTree = "<group>";
@@ -96,6 +131,34 @@
 			path = EkartTests;
 			sourceTree = "<group>";
 		};
+		E26614332335FDBB00796A47 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E26614132335FA9200796A47 /* AppDelegate.swift */,
+				E26614352335FE2200796A47 /* Global.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E26614342335FDD900796A47 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E266141A2335FA9500796A47 /* Assets.xcassets */,
+				E266141C2335FA9600796A47 /* LaunchScreen.storyboard */,
+				E266141F2335FA9600796A47 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		EF22FD6D39A21BBBABCB889E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E965ADDA152507BAEED49223 /* Pods_Ekart.framework */,
+				495AE0B2E5E0FCA437E3144C /* Pods_EkartTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E266142D2335FA9600796A47 /* Build configuration list for PBXNativeTarget "Ekart" */;
 			buildPhases = (
+				2D95FD942C71D6E261F396FF /* [CP] Check Pods Manifest.lock */,
 				E266140C2335FA9100796A47 /* Sources */,
 				E266140D2335FA9100796A47 /* Frameworks */,
 				E266140E2335FA9100796A47 /* Resources */,
+				151A9EBD98EC0DB11D870937 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,6 +185,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E26614302335FA9600796A47 /* Build configuration list for PBXNativeTarget "EkartTests" */;
 			buildPhases = (
+				C588D8DBD8F5B1B1DED692DA /* [CP] Check Pods Manifest.lock */,
 				E26614202335FA9600796A47 /* Sources */,
 				E26614212335FA9600796A47 /* Frameworks */,
 				E26614222335FA9600796A47 /* Resources */,
@@ -179,7 +245,6 @@
 			files = (
 				E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */,
 				E266141B2335FA9500796A47 /* Assets.xcassets in Resources */,
-				E26614192335FA9200796A47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,13 +257,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		151A9EBD98EC0DB11D870937 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ekart/Pods-Ekart-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ekart/Pods-Ekart-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ekart/Pods-Ekart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D95FD942C71D6E261F396FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ekart-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C588D8DBD8F5B1B1DED692DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EkartTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E266140C2335FA9100796A47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E26614162335FA9200796A47 /* ViewController.swift in Sources */,
+				E266144023360DCC00796A47 /* HeadyModel.swift in Sources */,
+				E266143A2336007600796A47 /* CategoriesViewController.swift in Sources */,
+				E266143E23360A3400796A47 /* Service.swift in Sources */,
+				E26614362335FE2200796A47 /* Global.swift in Sources */,
 				E26614142335FA9200796A47 /* AppDelegate.swift in Sources */,
+				E26614442336148300796A47 /* EmptyView.swift in Sources */,
+				E2661442233611E300796A47 /* MasterDataManager.swift in Sources */,
+				E2661446233614BF00796A47 /* UIExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +356,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E26614172335FA9200796A47 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E26614182335FA9200796A47 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E266141C2335FA9600796A47 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -358,9 +485,11 @@
 		};
 		E266142E2335FA9600796A47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E02709A6038729CEA6980956 /* Pods-Ekart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Ekart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -369,6 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.Ekart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -376,9 +506,11 @@
 		};
 		E266142F2335FA9600796A47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C533655495FC83C776921EBC /* Pods-Ekart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Ekart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,6 +519,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.Ekart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -394,6 +527,7 @@
 		};
 		E26614312335FA9600796A47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F446798880F4DA9B9C41F3 /* Pods-EkartTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -414,6 +548,7 @@
 		};
 		E26614322335FA9600796A47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 079EEC9405116A661FDF2F03 /* Pods-EkartTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
