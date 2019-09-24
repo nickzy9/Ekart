@@ -39,15 +39,13 @@ final class CategoriesViewController: UIViewController {
     //MARK: - Draw UI
     private func drawUI() {
         navigationItem.title = "Categories"
-//        navigationController?.navigationBar.prefersLargeTitles = true
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Ranking", style: .done, target: self, action: #selector(showProductPage))
         view.backgroundColor = .headyWhite
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
             make.bottom.leading.trailing.top.equalToSuperview()
         }
-        
         tableView.backgroundView = emptyView
         
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
@@ -60,73 +58,42 @@ final class CategoriesViewController: UIViewController {
         MasterDataManager.instance.fetch()
     }
     
-    /// Show/hide child categories
-    private func expandCollaps(_ section: Int) -> Bool {
-        let childCount = MasterDataManager.instance.categoriesData[section].childCategories.count
-        
-        if childCount <= 0 {
-            return false
+    @objc private func showProductPage(showAllProducts: Bool = true, _ categoryId: Int = 0) {
+        if !showAllProducts {
+            let category = MasterDataManager.instance.categoriesData.first(where: {($0.id == categoryId)})
+            if let category = category {
+                let vc = ProductListViewController(category.products, category.name)
+                navigationController?.pushViewController(vc, animated: true)
+                return
+            }
         }
-        
-        var isOpen = false
-        if let unWrappedValue = MasterDataManager.instance.categoriesData[section].isOpen {
-            isOpen = unWrappedValue
-        }
-        
-        var indexPaths = [IndexPath]()
-        for i in 1...childCount {
-            indexPaths.append(IndexPath(row: i, section: section))
-        }
-        
-        MasterDataManager.instance.categoriesData[section].isOpen = !isOpen
-        
-        if !isOpen {
-            tableView.insertRows(at: indexPaths, with: .fade)
-        } else {
-            tableView.deleteRows(at: indexPaths, with: .fade)
-        }
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: section)) as? CategoryCell {
-            cell.updateIconState(!isOpen)
-        }
-        return true
-    }
-}
-
-extension CategoriesViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView?.isHidden = (MasterDataManager.instance.categoriesData.count != 0)
-        return MasterDataManager.instance.categoriesData.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = MasterDataManager.instance.categoriesData[section]
-        return (category.isOpen ?? false) ? category.childCategories.count + 1 : 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
-        let mainCategory = MasterDataManager.instance.categoriesData[indexPath.section]
-        if indexPath.row == 0 {
-            cell.setupCell(name: mainCategory.name, isOpen: mainCategory.isOpen, hasChild: mainCategory.childCategories.count > 0)
-            return cell
-        }
-        if let childCategories = mainCategory.childCategoriesDetail {
-            cell.setupCell(true, name: childCategories[indexPath.row - 1].name, isOpen: false)
-            return cell
-        }
-        cell.setupCell(name: "") // For safe, should never fall here
-        return cell
+        let products = MasterDataManager.instance.categoriesData.flatMap({$0.products})
+        let vc = ProductListViewController(products, "Rankings")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
-            return
+        if !expandCollaps(indexPath) {
+            if let id = MasterDataManager.instance.displayCategories[safe: indexPath.row]?.id {
+                showProductPage(showAllProducts: false, id)
+            }
         }
-        if !expandCollaps(indexPath.section) {
-            
-        }
+        // Do nothing
+    }
+}
+
+extension CategoriesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = (MasterDataManager.instance.displayCategories.count != 0)
+        return MasterDataManager.instance.displayCategories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
+        cell.category = MasterDataManager.instance.displayCategories[safe: indexPath.row]
+        return cell
     }
 }
 
@@ -182,5 +149,56 @@ extension CategoriesViewController {
 extension CategoriesViewController: EmptyViewDelegate {
     func emptyViewButtonTapped() {
         MasterDataManager.instance.fetch()
+    }
+}
+
+extension CategoriesViewController {
+    
+    /// Show/hide child categories
+    private func expandCollaps(_ indexPath: IndexPath) -> Bool {
+        let category = MasterDataManager.instance.displayCategories[indexPath.row]
+        
+        if !category.hasChild {
+            return false
+        }
+        
+        guard let mainCategory = MasterDataManager.instance.categoriesData.first(where: {$0.id == category.id}) else {
+            return false
+        }
+        
+        MasterDataManager.instance.displayCategories[indexPath.row].isOpen = !MasterDataManager.instance.displayCategories[indexPath.row].isOpen
+        
+        var index = indexPath.row
+        var indexPaths = [IndexPath]()
+        
+        var additionalChildCategories = [CategoryDetail]()
+        for id in mainCategory.childCategories {
+            if let childCategory = MasterDataManager.instance.categoriesData.first(where: {$0.id == id}) {
+                let tempCategory = CategoryDetail(id: childCategory.id, name: childCategory.name,
+                                                  hasChild: childCategory.childCategories.count > 0, isOpen: false)
+                tempCategory.level = category.level + 1
+                additionalChildCategories.append(tempCategory)
+                index += 1
+                indexPaths.append(IndexPath(row: index, section: indexPath.section))
+                if MasterDataManager.instance.displayCategories[indexPath.row].isOpen {
+                    MasterDataManager.instance.displayCategories.insert(tempCategory, at: index)
+                }
+            }
+        }
+        
+        if MasterDataManager.instance.displayCategories[indexPath.row].isOpen {
+            tableView.insertRows(at: indexPaths, with: .fade)
+        } else {
+            let removedIndexs = MasterDataManager.instance.removeAllChildCategories(id: category.id)
+            indexPaths.removeAll()
+            for rmi in removedIndexs {
+                indexPaths.append(IndexPath(row: rmi, section: indexPath.section))
+            }
+            tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+        if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell {
+            cell.updateIconState(MasterDataManager.instance.displayCategories[indexPath.row].isOpen)
+        }
+        return true
     }
 }

@@ -61,13 +61,10 @@ class EmptyView: UIView {
         switch status {
         case .loading:
             showLoadingView()
-//            currentView?.accessibilityLabel = "EmptyViewLoading"
         case .empty:
             showMessage(message: "No products available", buttonTitle: "Refresh")
-//            currentView?.accessibilityLabel = "EmptyViewEmpty"
         case .disconnected:
             showMessage(message: "Please check your internet connection", buttonTitle: "Retry")
-//            currentView?.accessibilityLabel = "EmptyViewDisconnected"
         }
     }
     

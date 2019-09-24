@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		86EF4B72023FE11B91941394 /* Pods_EkartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AE0B2E5E0FCA437E3144C /* Pods_EkartTests.framework */; };
+		C157C01E233A2125006DE607 /* CustomSlectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C157C01D233A2125006DE607 /* CustomSlectionView.swift */; };
+		C157C021233A2306006DE607 /* CustomSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C157C01F233A2306006DE607 /* CustomSelectionCollectionViewCell.swift */; };
+		C157C022233A2306006DE607 /* CustomSelectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C157C020233A2306006DE607 /* CustomSelectionCollectionViewCell.xib */; };
 		CD239452553CB66EB4D29784 /* Pods_Ekart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E965ADDA152507BAEED49223 /* Pods_Ekart.framework */; };
+		E258DDEC23375C64004CBD3F /* CollectionTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258DDEB23375C64004CBD3F /* CollectionTypeExtension.swift */; };
 		E26614142335FA9200796A47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26614132335FA9200796A47 /* AppDelegate.swift */; };
 		E266141B2335FA9500796A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E266141A2335FA9500796A47 /* Assets.xcassets */; };
 		E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E266141C2335FA9600796A47 /* LaunchScreen.storyboard */; };
@@ -42,8 +46,12 @@
 		079EEC9405116A661FDF2F03 /* Pods-EkartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkartTests.release.xcconfig"; path = "Target Support Files/Pods-EkartTests/Pods-EkartTests.release.xcconfig"; sourceTree = "<group>"; };
 		19F446798880F4DA9B9C41F3 /* Pods-EkartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkartTests.debug.xcconfig"; path = "Target Support Files/Pods-EkartTests/Pods-EkartTests.debug.xcconfig"; sourceTree = "<group>"; };
 		495AE0B2E5E0FCA437E3144C /* Pods_EkartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EkartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C157C01D233A2125006DE607 /* CustomSlectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlectionView.swift; sourceTree = "<group>"; };
+		C157C01F233A2306006DE607 /* CustomSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		C157C020233A2306006DE607 /* CustomSelectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSelectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		C533655495FC83C776921EBC /* Pods-Ekart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ekart.release.xcconfig"; path = "Target Support Files/Pods-Ekart/Pods-Ekart.release.xcconfig"; sourceTree = "<group>"; };
 		E02709A6038729CEA6980956 /* Pods-Ekart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ekart.debug.xcconfig"; path = "Target Support Files/Pods-Ekart/Pods-Ekart.debug.xcconfig"; sourceTree = "<group>"; };
+		E258DDEB23375C64004CBD3F /* CollectionTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTypeExtension.swift; sourceTree = "<group>"; };
 		E26614102335FA9200796A47 /* Ekart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ekart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26614132335FA9200796A47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E266141A2335FA9500796A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 				E26614332335FDBB00796A47 /* Common */,
 				E26614342335FDD900796A47 /* Resources */,
 				E26614392336007600796A47 /* CategoriesViewController.swift */,
+				E258DDEB23375C64004CBD3F /* CollectionTypeExtension.swift */,
 				E2661441233611E300796A47 /* MasterDataManager.swift */,
 				E266144723369D1B00796A47 /* CategoryCell.swift */,
 				E266144B2336B28800796A47 /* ProductListViewController.swift */,
@@ -135,6 +144,9 @@
 				E266143D23360A3400796A47 /* Service.swift */,
 				E266143F23360DCC00796A47 /* HeadyModel.swift */,
 				E26614432336148300796A47 /* EmptyView.swift */,
+				C157C01D233A2125006DE607 /* CustomSlectionView.swift */,
+				C157C01F233A2306006DE607 /* CustomSelectionCollectionViewCell.swift */,
+				C157C020233A2306006DE607 /* CustomSelectionCollectionViewCell.xib */,
 				E2661445233614BF00796A47 /* UIExtension.swift */,
 			);
 			path = Ekart;
@@ -261,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C157C022233A2306006DE607 /* CustomSelectionCollectionViewCell.xib in Resources */,
 				E266141E2335FA9600796A47 /* LaunchScreen.storyboard in Resources */,
 				E266144A23369D1B00796A47 /* CategoryCell.xib in Resources */,
 				E26614522336B4BC00796A47 /* ProductCell.xib in Resources */,
@@ -349,11 +362,14 @@
 			files = (
 				E266144023360DCC00796A47 /* HeadyModel.swift in Sources */,
 				E26614512336B4BC00796A47 /* ProductCell.swift in Sources */,
+				C157C01E233A2125006DE607 /* CustomSlectionView.swift in Sources */,
 				E266143A2336007600796A47 /* CategoriesViewController.swift in Sources */,
 				E266144D2336B28800796A47 /* ProductListViewController.swift in Sources */,
 				E266143E23360A3400796A47 /* Service.swift in Sources */,
 				E26614362335FE2200796A47 /* Global.swift in Sources */,
 				E26614142335FA9200796A47 /* AppDelegate.swift in Sources */,
+				C157C021233A2306006DE607 /* CustomSelectionCollectionViewCell.swift in Sources */,
+				E258DDEC23375C64004CBD3F /* CollectionTypeExtension.swift in Sources */,
 				E266144923369D1B00796A47 /* CategoryCell.swift in Sources */,
 				E26614442336148300796A47 /* EmptyView.swift in Sources */,
 				E2661442233611E300796A47 /* MasterDataManager.swift in Sources */,

@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum RankType: Int {
+    case none = 0, orders = 1, views = 2, share = 3
+}
+
 // MARK: - Welcome
 struct HeadyModel: Codable {
     let categories: [Category]
@@ -15,13 +19,11 @@ struct HeadyModel: Codable {
 }
 
 // MARK: - Category
-class Category: Codable {
+struct Category: Codable {
     let id: Int
     let name: String
     let products: [CategoryProduct]
     let childCategories: [Int]
-    var isOpen: Bool?
-    var childCategoriesDetail: [ChildCategoriesDetail]?
     
     enum CodingKeys: String, CodingKey {
         case id, name, products
@@ -35,7 +37,7 @@ class CategoryProduct: Codable {
     let name, dateAdded: String
     let variants: [Variant]
     let tax: Tax
-    var rankCount: Int?
+    var viewCount, orderCount, shares: Int?
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -44,10 +46,21 @@ class CategoryProduct: Codable {
     }
 }
 
-// MARK: - ChildCategoriesDetail
-struct ChildCategoriesDetail: Codable {
+// MARK: - CategoriesDetail
+class CategoryDetail {
     let id: Int
     let name: String
+    let hasChild: Bool
+    var isOpen: Bool
+    var level: Int
+    
+    init(id: Int, name: String, hasChild: Bool, isOpen: Bool, level: Int = 0) {
+        self.id = id
+        self.name = name
+        self.hasChild = hasChild
+        self.isOpen = isOpen
+        self.level = level
+    }
 }
 
 // MARK: - Tax
@@ -75,7 +88,7 @@ struct Ranking: Codable {
     let products: [RankingProduct]
 }
 
-// MARK: - RankingProduct
+//// MARK: - RankingProduct
 struct RankingProduct: Codable {
     let id: Int
     let viewCount, orderCount, shares: Int?

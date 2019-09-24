@@ -20,19 +20,18 @@ class CategoryCell: UITableViewCell {
         // Initialization code
     }
     
-    func setupCell(_ isChild: Bool = false, name: String,
-                   isOpen: Bool? = false, hasChild: Bool = false) {
-        titleLabel.text = name
-        iconView.isHidden = !hasChild
-        
-        if isChild {
-            titleLabel.textColor = .headyGray
-            titleLabel.font = UIFont.systemFont(ofSize: CGFloat(Global.fontSize.medium))
-        } else {
-            titleLabel.textColor = .headyText
-            titleLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(Global.fontSize.big))
+    var category: CategoryDetail? {
+        didSet {
+            if let category = category {
+                iconView.isHidden = !category.hasChild
+                var space = ""
+                for _ in 0...category.level {
+                    space = space + "   "
+                }
+                titleLabel.text = space + category.name.trimmingCharacters(in: .whitespaces)
+                updateIconState(category.isOpen)
+            }
         }
-        updateIconState(isOpen ?? false)
     }
     
     func updateIconState(_ isOpen: Bool) {
