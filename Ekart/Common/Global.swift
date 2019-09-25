@@ -9,17 +9,12 @@
 import Foundation
 import UIKit
 
-/// List of api end points
-enum Endpoint: String {
-    case headyProducts = "/json​"
-}
-
 /// Response enum with message
 enum ResponseWithMessage: String {
-    case badResponse = "Something went wrong"
-    case networkIssue = "You are offline"
-    case serverIssue = "Unable to reach server"
-    case success = "Yay!"
+    case badResponse = "badResponse"
+    case networkIssue = "networkIssue"
+    case serverIssue = "serverIssue"
+    case success = ""
 }
 
 struct Global {
@@ -35,13 +30,6 @@ struct Global {
         debugPrint(object)
         #endif
     }
-    
-    /// Font size
-    struct fontSize {
-        static let big = 17.0
-        static let medium = 15.0
-        static let small = 13.0
-    }
 }
 
 //MARK: - Theme Colors
@@ -49,9 +37,9 @@ extension UIColor {
     static let headyGray = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
     static let headyLightGray = UIColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 0.1)
     static let headyWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-    static let headyBlue = UIColor(red: 0/255, green: 106/255, blue: 232/255, alpha: 1)
-    static let headyWarningBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6)
+    static let headyGreen = UIColor(red: 188/255, green: 216/250, blue: 209/250, alpha: 1)
     static let headyText = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+    static let headyRed = UIColor(red: 254/255, green: 0/255, blue: 0/255, alpha: 1)
 }
 
 //MARK: -  Notification Name

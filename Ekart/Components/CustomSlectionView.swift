@@ -17,6 +17,8 @@ final class CustomSlectionView: UIView {
     fileprivate lazy var collectionView: UICollectionView = self.makeCollectionView()
     fileprivate var variants: [Variant] = []
     fileprivate var isForSize = Bool()
+    fileprivate var displayVariants: [Variant] = []
+    fileprivate var lastSelectedVariantId: Int?
     
     //MARK: - Init with Delegate
     weak var delegate: CustomSlectionViewDelegate?
@@ -26,6 +28,18 @@ final class CustomSlectionView: UIView {
         self.delegate = delegate
         self.variants = data
         self.isForSize = forSize
+        
+        // Remove duplicate size
+        if isForSize {
+            for variant in variants.enumerated() {
+                if displayVariants.contains(where: {($0.size == variant.element.size)}) {
+                    continue
+                }
+                displayVariants.append(variant.element)
+            }
+        } else {
+            displayVariants = variants
+        }
     }
     
     override init(frame: CGRect) {
@@ -39,7 +53,7 @@ final class CustomSlectionView: UIView {
     
     //MARK: - Draw UI
     private func drawUI() {
-        self.backgroundColor = .headyLightGray
+        self.backgroundColor = .headyWhite
         self.addSubview(collectionView)
         collectionView.snp.makeConstraints{ (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
@@ -65,21 +79,25 @@ extension CustomSlectionView {
 
 extension CustomSlectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelect(isForSize: isForSize, id: variants[safe: indexPath.row]?.id, fromVariants: variants)
+        if lastSelectedVariantId == displayVariants[safe: indexPath.row]?.id {
+            return
+        }
+        lastSelectedVariantId = displayVariants[safe: indexPath.row]?.id
+        delegate?.didSelect(isForSize: isForSize, id: displayVariants[safe: indexPath.row]?.id, fromVariants: variants)
     }
 }
 
 extension CustomSlectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return variants.count
+        return displayVariants.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomSelectionCollectionViewCell", for: indexPath) as! CustomSelectionCollectionViewCell
-        if isForSize, let value = variants[safe: indexPath.row]?.size {
+        if isForSize, let value = displayVariants[safe: indexPath.row]?.size {
             cell.titleLabel.text = "\(value)"
         }
-        if !isForSize, let value = variants[safe: indexPath.row]?.color {
+        if !isForSize, let value = displayVariants[safe: indexPath.row]?.color {
             cell.titleLabel.text = "\(value)"
         }
         cell.setView()

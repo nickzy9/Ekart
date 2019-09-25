@@ -32,10 +32,6 @@ final class CategoriesViewController: UIViewController {
         MasterDataManager.instance.fetch()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     //MARK: - Draw UI
     private func drawUI() {
         navigationItem.title = "Categories"
@@ -58,29 +54,34 @@ final class CategoriesViewController: UIViewController {
         MasterDataManager.instance.fetch()
     }
     
-    @objc private func showProductPage(showAllProducts: Bool = true, _ categoryId: Int = 0) {
-        if !showAllProducts {
+    @objc private func showProductPage(showCategoryProducts: Bool = false, _ categoryId: Int = 0) {
+        if showCategoryProducts {
             let category = MasterDataManager.instance.categoriesData.first(where: {($0.id == categoryId)})
             if let category = category {
-                let vc = ProductListViewController(category.products, category.name)
+                let vc = ProductListViewController(category.products, category.name, showRanking: false)
                 navigationController?.pushViewController(vc, animated: true)
                 return
             }
         }
-        let products = MasterDataManager.instance.categoriesData.flatMap({$0.products})
-        let vc = ProductListViewController(products, "Rankings")
+        
+        if MasterDataManager.instance.rankingData.isEmpty {
+            view.makeToast("Experiencing network issue...", duration: 1.0, position: .bottom)
+            return
+        }
+        
+        let vc =  ProductListViewController([], "Ranking", showRanking: true)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !expandCollaps(indexPath) {
+        if !expandCollapseCategories(indexPath) {
             if let id = MasterDataManager.instance.displayCategories[safe: indexPath.row]?.id {
-                showProductPage(showAllProducts: false, id)
+                showProductPage(showCategoryProducts: true, id)
             }
         }
-        // Do nothing
+        // Do nothing, Just expand the cell
     }
 }
 
@@ -118,7 +119,7 @@ extension CategoriesViewController {
     }
     
     @objc func categoriesDidUpdate() {
-        //Stop the pullToRefrsh
+        //Stop the pullToRefresh
         tableView.refreshControl?.endRefreshing()
         
         //Reset the empty view status
@@ -129,7 +130,7 @@ extension CategoriesViewController {
     }
     
     @objc func categoriesDidFailToRefresh() {
-        //Stop the pullToRefrsh
+        //Stop the pullToRefresh
         tableView.refreshControl?.endRefreshing()
         
         //Update the empty view status
@@ -153,12 +154,11 @@ extension CategoriesViewController: EmptyViewDelegate {
 }
 
 extension CategoriesViewController {
-    
     /// Show/hide child categories
-    private func expandCollaps(_ indexPath: IndexPath) -> Bool {
+    private func expandCollapseCategories(_ indexPath: IndexPath) -> Bool {
         let category = MasterDataManager.instance.displayCategories[indexPath.row]
         
-        if !category.hasChild {
+        if !category.hasChild { // No child categories found
             return false
         }
         
@@ -166,36 +166,37 @@ extension CategoriesViewController {
             return false
         }
         
+        /// Change the category OPEN state
         MasterDataManager.instance.displayCategories[indexPath.row].isOpen = !MasterDataManager.instance.displayCategories[indexPath.row].isOpen
         
         var index = indexPath.row
         var indexPaths = [IndexPath]()
-        
         var additionalChildCategories = [CategoryDetail]()
-        for id in mainCategory.childCategories {
-            if let childCategory = MasterDataManager.instance.categoriesData.first(where: {$0.id == id}) {
-                let tempCategory = CategoryDetail(id: childCategory.id, name: childCategory.name,
-                                                  hasChild: childCategory.childCategories.count > 0, isOpen: false)
-                tempCategory.level = category.level + 1
-                additionalChildCategories.append(tempCategory)
-                index += 1
-                indexPaths.append(IndexPath(row: index, section: indexPath.section))
-                if MasterDataManager.instance.displayCategories[indexPath.row].isOpen {
-                    MasterDataManager.instance.displayCategories.insert(tempCategory, at: index)
+        
+        let isOpen = MasterDataManager.instance.displayCategories[indexPath.row].isOpen
+        
+        if isOpen {
+            for id in mainCategory.childCategories {
+                if let childCategory = MasterDataManager.instance.categoriesData.first(where: {$0.id == id}) {
+                    let tempCategory = CategoryDetail(id: childCategory.id, name: childCategory.name,
+                                                      hasChild: childCategory.childCategories.count > 0, isOpen: false)
+                    tempCategory.level = category.level + 1
+                    additionalChildCategories.append(tempCategory)
+                    index += 1
+                    indexPaths.append(IndexPath(row: index, section: indexPath.section))
+                    MasterDataManager.instance.displayCategories.insert(tempCategory, at: index) // Insert child categories to expand cells
                 }
             }
-        }
-        
-        if MasterDataManager.instance.displayCategories[indexPath.row].isOpen {
             tableView.insertRows(at: indexPaths, with: .fade)
         } else {
-            let removedIndexs = MasterDataManager.instance.removeAllChildCategories(id: category.id)
+            let removedIndexs = MasterDataManager.instance.removeAllChildCategoriesFromDisplayCategories(id: category.id)  // Remove child categories to collapse cells
             indexPaths.removeAll()
             for rmi in removedIndexs {
                 indexPaths.append(IndexPath(row: rmi, section: indexPath.section))
             }
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
+        
         if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell {
             cell.updateIconState(MasterDataManager.instance.displayCategories[indexPath.row].isOpen)
         }

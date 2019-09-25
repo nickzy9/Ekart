@@ -107,6 +107,65 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C157C023233B5FCD006DE607 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				E2661441233611E300796A47 /* MasterDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		C157C024233B5FE1006DE607 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E26614392336007600796A47 /* CategoriesViewController.swift */,
+				E266144B2336B28800796A47 /* ProductListViewController.swift */,
+				E266144C2336B28800796A47 /* ProductListViewController.xib */,
+				C157C027233B6552006DE607 /* Views */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C157C025233B64EA006DE607 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E26614432336148300796A47 /* EmptyView.swift */,
+				E2661445233614BF00796A47 /* UIExtension.swift */,
+				C157C01D233A2125006DE607 /* CustomSlectionView.swift */,
+				E258DDEB23375C64004CBD3F /* CollectionTypeExtension.swift */,
+				C157C01F233A2306006DE607 /* CustomSelectionCollectionViewCell.swift */,
+				C157C020233A2306006DE607 /* CustomSelectionCollectionViewCell.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C157C026233B6543006DE607 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				E266143F23360DCC00796A47 /* HeadyModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		C157C027233B6552006DE607 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E266144F2336B4BC00796A47 /* ProductCell.swift */,
+				E26614502336B4BC00796A47 /* ProductCell.xib */,
+				E266144723369D1B00796A47 /* CategoryCell.swift */,
+				E266144823369D1B00796A47 /* CategoryCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C157C028233B657A006DE607 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E266143D23360A3400796A47 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E26614072335FA9100796A47 = {
 			isa = PBXGroup;
 			children = (
@@ -130,24 +189,13 @@
 		E26614122335FA9200796A47 /* Ekart */ = {
 			isa = PBXGroup;
 			children = (
-				E26614332335FDBB00796A47 /* Common */,
 				E26614342335FDD900796A47 /* Resources */,
-				E26614392336007600796A47 /* CategoriesViewController.swift */,
-				E258DDEB23375C64004CBD3F /* CollectionTypeExtension.swift */,
-				E2661441233611E300796A47 /* MasterDataManager.swift */,
-				E266144723369D1B00796A47 /* CategoryCell.swift */,
-				E266144B2336B28800796A47 /* ProductListViewController.swift */,
-				E266144C2336B28800796A47 /* ProductListViewController.xib */,
-				E266144F2336B4BC00796A47 /* ProductCell.swift */,
-				E26614502336B4BC00796A47 /* ProductCell.xib */,
-				E266144823369D1B00796A47 /* CategoryCell.xib */,
-				E266143D23360A3400796A47 /* Service.swift */,
-				E266143F23360DCC00796A47 /* HeadyModel.swift */,
-				E26614432336148300796A47 /* EmptyView.swift */,
-				C157C01D233A2125006DE607 /* CustomSlectionView.swift */,
-				C157C01F233A2306006DE607 /* CustomSelectionCollectionViewCell.swift */,
-				C157C020233A2306006DE607 /* CustomSelectionCollectionViewCell.xib */,
-				E2661445233614BF00796A47 /* UIExtension.swift */,
+				E26614332335FDBB00796A47 /* Common */,
+				C157C028233B657A006DE607 /* Service */,
+				C157C026233B6543006DE607 /* DataModel */,
+				C157C023233B5FCD006DE607 /* DataManager */,
+				C157C024233B5FE1006DE607 /* ViewControllers */,
+				C157C025233B64EA006DE607 /* Components */,
 			);
 			path = Ekart;
 			sourceTree = "<group>";

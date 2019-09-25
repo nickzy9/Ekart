@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tci-2b-EMg">
-                        <rect key="frame" x="12" y="4" width="296" height="99.5"/>
+                        <rect key="frame" x="12" y="6" width="296" height="95.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-S8-ypY">
-                                <rect key="frame" x="16" y="28.5" width="76.5" height="42.5"/>
+                                <rect key="frame" x="16" y="26.5" width="76.5" height="42.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01f-s2-CFM">
                                         <rect key="frame" x="0.0" y="0.0" width="76.5" height="20.5"/>
@@ -40,7 +40,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="iSd-S8-ypY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tci-2b-EMg" secondAttribute="top" constant="16" id="3Eo-nY-dUA"/>
                             <constraint firstItem="iSd-S8-ypY" firstAttribute="leading" secondItem="tci-2b-EMg" secondAttribute="leading" constant="16" id="7R2-WY-Ti0"/>
@@ -50,11 +50,11 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40Q-IP-2Ic">
-                        <rect key="frame" x="265.5" y="10" width="48.5" height="24"/>
+                        <rect key="frame" x="268" y="12" width="46" height="22.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogF-bN-pnp">
-                                <rect key="frame" x="8" y="4" width="32.5" height="16"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                <rect key="frame" x="8" y="4" width="30" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -68,12 +68,13 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="tci-2b-EMg" secondAttribute="bottom" constant="4" id="A88-dD-zqg"/>
+                    <constraint firstAttribute="bottom" secondItem="tci-2b-EMg" secondAttribute="bottom" constant="6" id="A88-dD-zqg"/>
                     <constraint firstAttribute="trailing" secondItem="tci-2b-EMg" secondAttribute="trailing" constant="12" id="aa6-SJ-Hpr"/>
                     <constraint firstItem="40Q-IP-2Ic" firstAttribute="trailing" secondItem="tci-2b-EMg" secondAttribute="trailing" constant="6" id="g6C-ia-lvk"/>
                     <constraint firstItem="tci-2b-EMg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="gWY-sB-IfZ"/>
-                    <constraint firstItem="tci-2b-EMg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="mwb-bo-ObA"/>
+                    <constraint firstItem="tci-2b-EMg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="mwb-bo-ObA"/>
                     <constraint firstItem="40Q-IP-2Ic" firstAttribute="top" secondItem="tci-2b-EMg" secondAttribute="top" constant="6" id="rMr-e4-1ZY"/>
                 </constraints>
             </tableViewCellContentView>

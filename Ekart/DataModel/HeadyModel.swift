@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RankType: Int {
+enum RankingType: Int {
     case none = 0, orders = 1, views = 2, share = 3
 }
 
@@ -38,6 +38,7 @@ class CategoryProduct: Codable {
     let variants: [Variant]
     let tax: Tax
     var viewCount, orderCount, shares: Int?
+    var rankCount: Int = -1
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -65,13 +66,8 @@ class CategoryDetail {
 
 // MARK: - Tax
 struct Tax: Codable {
-    let name: Name
+    let name: String
     let value: Double
-}
-
-enum Name: String, Codable {
-    case vat = "VAT"
-    case vat4 = "VAT4"
 }
 
 // MARK: - Variant

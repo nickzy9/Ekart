@@ -70,7 +70,7 @@ class EmptyView: UIView {
     
     /// Message description label
     private lazy var descriptionLabel: UILabel = {
-        let label = UILabel(font: .systemFont(ofSize:  CGFloat(Global.fontSize.big)), textColor: .headyText)
+        let label = UILabel(font: .systemFont(ofSize: 17), textColor: .headyText)
         label.textAlignment = .center
         return label
     }()
@@ -109,6 +109,7 @@ class EmptyView: UIView {
             currentView.autoresizesSubviews = false
             addSubview(currentView)
             currentView.snp.makeConstraints { (make) in
+                make.centerY.equalToSuperview()
                 make.centerX.equalToSuperview()
                 make.width.equalToSuperview().multipliedBy(0.8)
             }
@@ -121,7 +122,7 @@ class EmptyView: UIView {
     }
     
     private func showLoadingView() {
-        let label = UILabel(font: .systemFont(ofSize: CGFloat(Global.fontSize.medium)), textColor: .headyGray)
+        let label = UILabel(font: .systemFont(ofSize: 15), textColor: .headyGray)
         label.text = "Loading..."
         
         let activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -131,7 +132,7 @@ class EmptyView: UIView {
         if let currentView = currentView {
             currentView.axis = .horizontal
             currentView.distribution = .equalSpacing
-            currentView.spacing = 8
+            currentView.spacing = 4
             currentView.alignment = .center
             addSubview(currentView)
             currentView.snp.makeConstraints { (make) in

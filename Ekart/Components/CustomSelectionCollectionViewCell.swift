@@ -22,14 +22,14 @@ class CustomSelectionCollectionViewCell: UICollectionViewCell {
     
     func setView() {
         self.backView.layer.cornerRadius = 5
-        self.backView.layer.borderColor = UIColor.headyGray.cgColor
+        self.backView.layer.borderColor = UIColor.headyGreen.cgColor
         self.backView.layer.borderWidth = 1
     }
 
     
     override var isSelected: Bool {
         didSet {
-            backView.backgroundColor = isSelected ? .headyBlue : .headyWhite
+            backView.backgroundColor = isSelected ? .headyGreen : .headyWhite
         }
     }
 }

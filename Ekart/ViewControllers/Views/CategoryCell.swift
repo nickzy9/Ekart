@@ -11,7 +11,6 @@ import UIKit
 class CategoryCell: UITableViewCell {
 
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     

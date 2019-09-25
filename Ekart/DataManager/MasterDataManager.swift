@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Data Manager
 final class MasterDataManager {
     
     static let instance = MasterDataManager()
@@ -18,7 +19,6 @@ final class MasterDataManager {
             if let unwrappedModel = headyModel {
                 categoriesData = unwrappedModel.categories
                 rankingData = unwrappedModel.rankings
-                updateProductListWithRankingData()
                 prepareDisplayCategories()
             } else {
                 categoriesData = []
@@ -31,6 +31,7 @@ final class MasterDataManager {
     var categoriesData = [Category]()
     var rankingData = [Ranking]()
     
+    /// Call API to fetch the data
     func fetch() {
         if isFetching { return }
         isFetching = true
@@ -47,13 +48,14 @@ final class MasterDataManager {
             case .success:
                 NotificationCenter.default.post(name: .categoriesDidUpdate, object: nil)
             default:
-                NotificationCenter.default.post(name: .categoriesDidFailToRefresh, object: resMsg)
+                NotificationCenter.default.post(name: .categoriesDidFailToRefresh, object: nil)
             }
             self.isFetching = false
         }
     }
     
-    func removeAllChildCategories(id: Int) -> [Int] {
+    /// Remove categories from display list
+    func removeAllChildCategoriesFromDisplayCategories(id: Int) -> [Int] {
         guard let currentIndex = displayCategories.firstIndex(where: {($0.id == id)}) else { return [] }
         guard let mainCategory = displayCategories[safe: currentIndex] else { return [] }
         var nextIndex = currentIndex
@@ -74,8 +76,50 @@ final class MasterDataManager {
         }
         return removedIndexs
     }
+    
+    /// Get products by ranking
+    ///
+    /// - Parameters:
+    ///   - typeIndex: Ranking type array index
+    ///   - sortByAsc: Set true for ASC order
+    /// - Returns: Category products
+    func getProductsWithRankingCount(by typeIndex: Int = 0, sortByAsc: Bool = true) -> [CategoryProduct] {
+        let allProducts = categoriesData.flatMap{$0.products}
+        guard let rankingProducts = rankingData[safe: typeIndex]?.products else {
+            return []
+        }
+        
+        let filterProducts = allProducts.filter{ p in
+            rankingProducts.contains(where: {$0.id == p.id})
+        }
+        
+        var updatedProducts = filterProducts.map{ p -> CategoryProduct in
+            if let pf = rankingProducts.first(where: {$0.id == p.id}) {
+                if let count = pf.viewCount {
+                    p.rankCount = count
+                }
+                
+                if let count = pf.shares {
+                    p.rankCount = count
+                }
+                
+                if let count = pf.orderCount {
+                    p.rankCount = count
+                }
+            }
+            return p
+        }
+        updatedProducts = updatedProducts.filter({($0.rankCount != -1 )})
+        if sortByAsc {
+            updatedProducts = updatedProducts.sorted(by: { $0.rankCount > $1.rankCount })
+        } else {
+            updatedProducts = updatedProducts.sorted(by: { $0.rankCount > $1.rankCount })
+        }
+        return updatedProducts
+    }
 }
 
+// MARK: - Prepare display categories data
 private extension MasterDataManager {
     func prepareDisplayCategories() {
         displayCategories.removeAll()
@@ -96,30 +140,5 @@ private extension MasterDataManager {
             }
         }
         return false
-    }
-    
-    func updateProductListWithRankingData() {
-        let allProducts = categoriesData.flatMap{$0.products}
-        for ranking in rankingData {
-            let filterProductList = allProducts.filter{ p in
-                ranking.products.contains(where: {$0.id == p.id})
-            }
-            let _ = filterProductList.map{ p -> CategoryProduct in
-                if let pf = ranking.products.first(where: {$0.id == p.id}) {
-                    if let count = pf.viewCount {
-                        p.viewCount = count
-                    }
-                    
-                    if let count = pf.shares {
-                        p.shares = count
-                    }
-                    
-                    if let count = pf.orderCount {
-                        p.orderCount = count
-                    }
-                }
-                return p
-            }
-        }
     }
 }

@@ -21,10 +21,10 @@ class Service {
             Global.api.headyProducts: .disableEvaluation
         ]
         
-        let confg = URLSessionConfiguration.default
-        confg.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        confg.timeoutIntervalForRequest = Global.api.requestTimeOut
-        return Alamofire.SessionManager(configuration: confg, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        config.timeoutIntervalForRequest = Global.api.requestTimeOut
+        return Alamofire.SessionManager(configuration: config, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
     }()
     
     /// Function to call API
@@ -33,7 +33,6 @@ class Service {
     ///   - api: API endpoint
     ///   - m: Method
     ///   - parameters: Parameters
-    ///   - isJsonEncoding: set true if required
     ///   - completion: Completion block to receive status
     func apiCall(_ api: String, method m: HTTPMethod = .get,
                  parameters: [String: Any]? = nil, isToSaveData: Bool = true, isToGetSavedData: Bool,
@@ -57,7 +56,6 @@ class Service {
                 case .failure:
                     res = .serverIssue
                 }
-                
                 if isToGetSavedData, let model = self.getStoredData(api: api) {
                     completion(model, res)
                     return
@@ -74,7 +72,7 @@ extension Service {
     ///
     /// - Parameters:
     ///   - data: Data
-    ///   - api: Endpopoint value
+    ///   - api: api URL
     /// - Returns: Data model or nil
     private func decodeJsonData(data: Data, api: String) -> Any? {
         do {
@@ -104,13 +102,12 @@ extension Service {
         UserDefaults.standard.set(rawString, forKey: key)
     }
     
-    /// Get chached data
+    /// Get cached data
     ///
-    /// - Parameter api: Endpopoint value
+    /// - Parameter api: api URL
     /// - Returns: Data model or nil
     private func getStoredData(api: String) -> Any? {
         let rawString = UserDefaults.standard.string(forKey: api)
-        
         if let data = rawString?.data(using: .utf8) {
             return decodeJsonData(data: data, api: api)
         }
